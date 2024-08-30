@@ -1,0 +1,84 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    # Step 1: Checkout the repository
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    # Step 2: Set up Node.js environment
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '21.x'  # Match this with your local Node.js version
+        cache: 'npm'
+
+    # Step 3: Install the correct npm version
+    - run: npm install -g npm@10.2.4  # Install the same npm version as your local environment
+
+    # Step 4: Install frontend dependencies
+    - name: Install frontend dependencies
+      working-directory: ./frontend
+      run: npm install
+
+    # Step 5: Run frontend unit tests
+    # This step ensures the pipeline fails if the unit tests fail
+    - name: Run frontend unit tests
+      working-directory: ./frontend
+      run: npm test
+      env:
+        CI: true  # Ensure watch mode is disabled in CI
+
+    # Step 6: Build the frontend application
+    # This step will fail if the code does not compile
+    - name: Build frontend application
+      working-directory: ./frontend
+      run: CI=false npm run build
+
+    # Debugging Step: List build directory contents before uploading
+    - name: List build directory contents before uploading
+      run: ls -la ./frontend/build/
+
+    # Step 7: Install backend dependencies
+    - name: Install backend dependencies
+      working-directory: ./backend
+      run: npm install
+
+    # Step 8: Verify frontend build artifacts
+    # This step checks if the build artifacts exist; the pipeline will fail if they are not present
+    - name: Verify frontend build artifacts
+      if: success()
+      run: |
+        if [ ! -d "./frontend/build" ]; then
+          echo "Build artifacts not found!"
+          exit 1
+        fi
+
+    # Step 9: Archive production artifacts
+    # This step archives the necessary files to run the project
+    - name: Archive production artifacts
+      if: success()
+      uses: actions/upload-artifact@v2
+      with:
+        name: production-artifacts
+        path: frontend/build/**
+
+    # Step 10: Deploy to production (if needed)
+    - name: Deploy to production
+      if: github.ref == 'refs/heads/main' && success()
+      run: |
+        # Add your deployment script here

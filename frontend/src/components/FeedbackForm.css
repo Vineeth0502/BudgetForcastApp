@@ -1,0 +1,139 @@
+/* FeedbackForm.css */
+/*
+ * File name: FeedbackForm.css
+ * Description: Styles for the feedback form and feedback popup components. 
+ *              Includes layout, spacing, and color settings for various elements.
+
+ */
+.feedback-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 20px auto;
+    border: 1px solid #ddd; /* Adds a subtle border */
+}
+
+.feedback-form-container h2 {
+    margin-bottom: 20px;
+    color: #000; /* Changed to black */
+    font-size: 24px; /* Increased font size for better readability */
+}
+
+.feedback-form-container label {
+    font-weight: bold;
+    margin-top: 10px;
+    color: #000; /* Changed to black */
+}
+
+.feedback-form-container select,
+.feedback-form-container textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensures padding doesn't exceed element width */
+}
+
+.feedback-form-container button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    color: #fff; /* Changed to white for better contrast */
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.feedback-form-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Feedback Popup Styles */
+
+.feedback-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.feedback-popup {
+    background: #fff; /* Changed to white for a cleaner look */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    border: 1px solid #ddd; /* Adds a subtle border */
+}
+
+.feedback-popup h2 {
+    margin-top: 0;
+    color: #000; /* Changed to black */
+    font-size: 22px; /* Slightly larger font size for emphasis */
+}
+
+.feedback-popup form {
+    display: flex;
+    flex-direction: column;
+}
+
+.feedback-popup label {
+    margin-bottom: 10px;
+    color: #000; /* Changed to black */
+}
+
+.feedback-popup textarea {
+    resize: vertical;
+    min-height: 80px;
+    border: 1px solid #ccc; /* Ensures consistency with other input fields */
+    border-radius: 4px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.feedback-popup button[type="submit"] {
+    background-color: #4caf50;
+    color: #fff; /* Changed to white for better contrast */
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.feedback-popup button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.feedback-popup button[type="button"] {
+    background-color: #f44336;
+    color: #fff; /* Changed to white for better contrast */
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.feedback-popup button[type="button"]:hover {
+    background-color: #e53935;
+}

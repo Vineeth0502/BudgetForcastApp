@@ -1,0 +1,99 @@
+/* TransactionList.css */
+/*
+ * File name: TransactionList.css
+ * Description: This CSS file contains styles for the TransactionList component.
+ * It provides the visual layout and design for transaction groups, items, and actions.
+ 
+ */
+
+.transaction-list-container {
+    margin-top: 20px;
+    color: white;
+}
+
+.transaction-group {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-group-header {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 4px 4px 0 0;
+    color: white;
+}
+
+.transaction-group-content {
+    margin-top: 10px;
+}
+
+.transaction-list-item {
+    background-color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-list-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.transaction-amount {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #4caf50;
+    display: flex;
+    align-items: center;
+}
+
+.transaction-date {
+    font-size: 1em;
+    color: #666;
+    display: flex;
+    align-items: center;
+}
+
+.transaction-description {
+    font-size: 1em;
+    color: #666;
+    display: flex;
+    align-items: center;
+}
+
+.transaction-category {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.transaction-category.income {
+    color: #4caf50;
+}
+
+.transaction-category.expense {
+    color: #f44336;
+}
+
+.transaction-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.transaction-actions .MuiIconButton-root {
+    margin-left: 5px;
+}
+
+.transaction-icon {
+    margin-right: 5px;
+}
+
+.see-more-button-container1 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,161 @@
+/* Dashboard.css */
+/**
+ * File name: Dashboard.css
+ * Description: This stylesheet provides the styles for the Dashboard component, including layout, appearance of cards, and integration of background video.
+ *              It ensures a visually appealing and functional user interface for the dashboard, including responsiveness and interactive elements.
+ 
+ */
+
+.dashboard-container {
+  position: static;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.5);
+}
+
+.dashboard-content {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  color: white;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.dashboard-content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.app-bar {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.title {
+  flex-grow: 1;
+}
+
+.dashboard-cards {
+  margin-top: 20px;
+}
+
+.dashboard-card {
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.dashboard-card:hover {
+  transform: scale(1.05);
+}
+
+.feedback{
+  display: flex;
+  justify-content: center;
+  
+}
+.balance-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.balance-item {
+  flex: 1;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.balance-item:last-child {
+  border-right: none;
+}
+
+.balance-item .MuiTypography-h6 {
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.balance-item .MuiTypography-h5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.balance-item .MuiTypography-h5 span {
+  margin-left: 5px;
+}
+
+.balance-item .MuiSvgIcon-root {
+  color: #000;
+}
+
+.balance-item.expense .MuiTypography-h5 span {
+  color: #f44336;
+}
+
+.balance-item.profit .MuiTypography-h5 span,
+.balance-item.current-balance .MuiTypography-h5 span {
+  color: #4caf50;
+}
+
+.action-card {
+  text-align: center;
+}
+
+.action-card .MuiTypography-h5 {
+  margin-bottom: 10px;
+}
+
+.action-card .MuiButton-root {
+  width: 100%;
+}
+
+.no-transactions {
+  margin-top: 20px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.visualization-section {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1000px; /* Adjust the width as needed */
+  margin: 0 auto;
+}
+
+.timeframe-select {
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 500px; 
+}
+
+.load-more {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 20px;  
+  margin-top: 20px;
+}

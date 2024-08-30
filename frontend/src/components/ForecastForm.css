@@ -1,0 +1,130 @@
+/*ForecastForm.css*/
+/*
+ * File name: ForcastForm.css
+ * Description: CSS file for styling the forecast page. Includes styles for layout, 
+ *              forms, buttons, and scrollbars. Provides a clean and responsive design.
+
+ */
+
+body {
+    font-family: 'Arial', sans-serif;
+    /* background: linear-gradient(to right, #4facfe, #00f2fe); */
+    margin: 0;
+    padding: 0;
+}
+
+.forecast-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    overflow: auto;
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* Hide scrollbars for Webkit browsers (Chrome, Safari) */
+.forecast-container::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+/* Hide scrollbars for Internet Explorer, Edge and Firefox */
+.forecast-container {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.forecast-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    background-color: #f1f1f1;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.back-button {
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    position: absolute;
+    left: 20px;
+}
+
+.back-button:hover {
+    background-color: #CC0000;
+}
+
+.forecast-header h1 {
+    margin: 0;
+    font-size: 24px;
+    padding-left: 100px;
+    padding-right: 100px;
+    color: #333;
+}
+
+.forecast-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 100px;
+    width: 100%;
+    max-width: 500px;
+    box-sizing: border-box;
+}
+
+.form-group2 {
+    margin-bottom: 20px;
+}
+
+.form-group2 label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.form-group2 input, .form-group2 select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+.forecast-button {
+    background-color: #4facfe;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.forecast-button:hover {
+    background-color: #00c2fe;
+}
+
+.forecast-result {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    margin-top: 20px;
+    text-align: center;
+}

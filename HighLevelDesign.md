@@ -1,7 +1,7 @@
 # High-Level Design Document
 
 ## Overview
-Budget Minder is a web-based application designed to help users manage and forecast their monthly budgets. The application allows users to set savings goals, forecast the time required to achieve these goals, and ensures robust data security. The project consists of a React frontend and a Node.js/Express backend, with MongoDB for database management.
+Budget Finder is a web-based application designed to help users manage and forecast their monthly budgets. The application allows users to set savings goals, forecast the time required to achieve these goals, and ensures robust data security. The project consists of a React frontend and a Node.js/Express backend, with MongoDB for database management.
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -14,7 +14,7 @@ Budget Minder is a web-based application designed to help users manage and forec
 8. [Sequence Diagram](#sequence-diagram)
 
 ## Introduction
-Budget Minder is designed to provide users with tools to track their income, expenses, and savings goals. The system offers functionalities such as user registration, login, transaction management, and budget forecasting. The project leverages various open-source libraries and frameworks to deliver a seamless and secure user experience.
+Budget Finder is designed to provide users with tools to track their income, expenses, and savings goals. The system offers functionalities such as user registration, login, transaction management, and budget forecasting. The project leverages various open-source libraries and frameworks to deliver a seamless and secure user experience.
 
 ## System Requirements
 - **Operating System**: Windows, macOS, Linux
@@ -24,7 +24,7 @@ Budget Minder is designed to provide users with tools to track their income, exp
 - **Browser**: Latest versions of Chrome, Firefox, Safari, or Edge
 
 ## Architecture
-The architecture of Budget Minder follows a typical Model-View-Controller (MVC) pattern:
+The architecture of Budget Finder follows a typical Model-View-Controller (MVC) pattern:
 - **Model**: Defines the data structure and database interaction.
 - **View**: The user interface developed with React.
 - **Controller**: Manages the application's logic and user input, developed with Express.

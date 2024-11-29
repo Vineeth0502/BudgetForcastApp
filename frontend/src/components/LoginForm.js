@@ -88,7 +88,7 @@ const LoginForm = () => {
     return (
         <>
             <header className="header">
-                <h1>Budget Minder</h1>
+                <h1>Budget Finder</h1>
                 <nav>
                     <Link to="/">Home</Link>
                     <Link to="/register">Sign Up</Link>
@@ -127,7 +127,7 @@ const LoginForm = () => {
                 {loading && <div className="spinner-overlay"><div className="spinner"></div></div>}
             </div>
             <footer className="footer">
-                <p>Budget Minder</p>
+                <p>Budget Finder</p>
                 <p>Managing your finances with ease</p>
             </footer>
         </>

@@ -40,7 +40,7 @@ const Homepage = () => {
       <header className="Homepage-header">
         <div className="logo">
           <img src={logo} alt="Budget Minder Logo" />
-          <span className="logo-text">Budget Minder</span>
+          <span className="logo-text">Budget Finder</span>
         </div>
         <nav className="navbar">
           <ul>

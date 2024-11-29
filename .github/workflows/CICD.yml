@@ -18,11 +18,11 @@ jobs:
     steps:
     # Step 1: Checkout the repository
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     # Step 2: Set up Node.js environment
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: '21.x'  # Match this with your local Node.js version
         cache: 'npm'
@@ -72,7 +72,7 @@ jobs:
     # This step archives the necessary files to run the project
     - name: Archive production artifacts
       if: success()
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: production-artifacts
         path: frontend/build/**

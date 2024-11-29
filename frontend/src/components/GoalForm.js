@@ -5,6 +5,7 @@ import { Doughnut, Line } from 'react-chartjs-2';
 import { Container, Row, Col, Form, Table, Card, Modal, Button } from 'react-bootstrap';
 import { AppBar, Toolbar, Typography, IconButton, TextField, Card as MUICard, CardContent, CardActions } from '@mui/material';
 import { Add as AddIcon, ExitToApp as ExitToAppIcon, ArrowBack as ArrowBackIcon } from '@mui/icons-material';
+import { Store } from 'react-notifications-component';
 
 import {
     Chart as ChartJS,
@@ -32,6 +33,8 @@ const GoalForm = ({ onAdd, fetchGoals, fetchForecasts }) => {
     const [showModal, setShowModal] = useState(false);
     const [modalContent, setModalContent] = useState({});
     const navigate = useNavigate();
+    const [payingForecast, setPayingForecast] = useState(null);
+    const [payingAmount, setPayingAmount] = useState(0);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -62,8 +65,9 @@ const GoalForm = ({ onAdd, fetchGoals, fetchForecasts }) => {
         getGoalsAndForecasts();
     }, [fetchGoals, fetchForecasts]);
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+   const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
         await onAdd({ name, targetAmount, targetDate, category, description });
         const updatedGoals = await fetchGoals();
         setGoals(updatedGoals);
@@ -72,7 +76,36 @@ const GoalForm = ({ onAdd, fetchGoals, fetchForecasts }) => {
         setTargetDate('');
         setCategory('');
         setDescription('');
-    };
+
+        // Show success notification
+        Store.addNotification({
+            title: "Success",
+            message: "Goal added successfully!",
+            type: "success",
+            insert: "top",
+            container: "top-right",
+            dismiss: {
+                duration: 6,
+                onScreen: true
+            }
+        });
+    } catch (error) {
+        console.error('Error adding goal:', error);
+
+        // Show error notification
+        Store.addNotification({
+            title: "Error",
+            message: "Failed to add goal. Please try again.",
+            type: "danger",
+            insert: "top",
+            container: "top-right",
+            dismiss: {
+                duration: 6000,
+                onScreen: true
+            }
+        });
+    }
+};
 
     const handleLogout = () => {
         localStorage.removeItem('token');
@@ -116,8 +149,30 @@ const GoalForm = ({ onAdd, fetchGoals, fetchForecasts }) => {
                     f._id === forecastId ? updatedForecast : f
                 )
             );
+            Store.addNotification({
+                title: "Payment Successful",
+                message: `You have successfully paid $${allocatedMoney} towards your forecast.`,
+                type: "success",
+                insert: "top",
+                container: "top-right",
+                dismiss: {
+                    duration: 4000,
+                    onScreen: true
+                }
+            });
         } catch (error) {
             console.error('Error:', error);
+            Store.addNotification({
+                title: "Error",
+                message: "Payment failed. Please try again.",
+                type: "danger",
+                insert: "top",
+                container: "top-right",
+                dismiss: {
+                    duration: 4000,
+                    onScreen: true
+                }
+            });
         }
     };
 

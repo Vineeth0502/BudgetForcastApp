@@ -10,6 +10,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './LoginForm.css';
+import { Store } from 'react-notifications-component'; // Importing the notification system
+import 'react-notifications-component/dist/theme.css'; // Import default notification styles
 
 // Utility functions for validation and sanitization
 
@@ -51,6 +53,17 @@ const LoginForm = () => {
         // Validate email
         if (!validateEmail(email)) {
             setMessage('Invalid email format.');
+            Store.addNotification({
+                title: "Error",
+                message: "Invalid email format.",
+                type: "danger",
+                insert: "top",
+                container: "top-right",
+                dismiss: {
+                    duration: 3000,
+                    onScreen: true
+                }
+            });
             return;
         }
 
@@ -78,10 +91,32 @@ const LoginForm = () => {
             localStorage.setItem('token', data.token);
             localStorage.setItem('userId', data.userId); // Store userId in localStorage
             setMessage(data.message);
+            Store.addNotification({
+                title: "Success",
+                message: "Logged in successfully!",
+                type: "success",
+                insert: "top",
+                container: "top-right",
+                dismiss: {
+                    duration: 6000,
+                    onScreen: true
+                }
+            });
             setTimeout(() => navigate('/dashboard'), 3000);
         } else {
             setMessage(data.error);
             setLoading(false);
+            Store.addNotification({
+                title: "Error",
+                message: data.error || "An error occurred. Please try again.",
+                type: "danger",
+                insert: "top",
+                container: "top-right",
+                dismiss: {
+                    duration: 6000,
+                    onScreen: true
+                }
+            });
         }
     };
 

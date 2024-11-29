@@ -16,6 +16,10 @@ import AddTransaction from './components/AddTransaction';
 import GoalForm from './components/GoalForm';
 import ForecastForm from './components/ForecastForm';
 import ParentComponent from './components/ParentComponent';
+import { ReactNotifications } from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
+import 'animate.css/animate.min.css';
+
 
 function App() {
 // Function to add a new goal
@@ -112,6 +116,12 @@ function App() {
   };
 
   return (
+    <div className="App">
+    {/* Notification Component at Root Level */}
+    
+    <ReactNotifications />
+
+    {/* Define Routes */}
     <Routes>
       <Route path="/" element={<Homepage />} />
       <Route path="/login" element={<LoginForm />} />
@@ -124,6 +134,7 @@ function App() {
       <Route path="/forecast" element={<ForecastForm onForecast={handleForecastGoal} saveForecast={saveForecast} />} />
       <Route path="/forcast" element={<ParentComponent />} />
     </Routes>
+  </div>
   );
 }
 

@@ -12,6 +12,7 @@ import './AddTransaction.css';
 import { IconButton } from '@mui/material';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Store } from 'react-notifications-component';
 
 const AddTransaction = () => {
      // State variables
@@ -59,18 +60,49 @@ const AddTransaction = () => {
                 : 'http://localhost:3000/api/transactions';
             const response = await fetch(url, {
                 method,
-                headers: { 
+                headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify({ ...initialData, userId }),
             });
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                throw new Error('Failed to save transaction');
             }
+    
+            // Success notification
+            Store.addNotification({
+                title: "Success!",
+                message: "Transaction saved successfully.",
+                type: "success", // Can be 'success', 'danger', 'info', 'default', 'warning'
+                insert: "top",
+                container: "top-right",
+                animationIn: ["animate__animated", "animate__fadeIn"],
+                animationOut: ["animate__animated", "animate__fadeOut"],
+                dismiss: {
+                    duration: 100000,
+                    onScreen: true,
+                },
+            });
+    
             navigate('/dashboard');
         } catch (error) {
             console.error('Error saving transaction:', error);
+    
+            // Error notification
+            Store.addNotification({
+                title: "Error!",
+                message: "Failed to save transaction.",
+                type: "danger",
+                insert: "top",
+                container: "top-right",
+                animationIn: ["animate__animated", "animate__fadeIn"],
+                animationOut: ["animate__animated", "animate__fadeOut"],
+                dismiss: {
+                    duration: 3000,
+                    onScreen: true,
+                },
+            });
         }
     };
     // Handle user logout

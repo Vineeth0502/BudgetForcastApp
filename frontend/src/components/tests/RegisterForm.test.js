@@ -33,7 +33,7 @@ test('renders register form', () => {
         </BrowserRouter>
     );
 
-    expect(screen.getByRole('heading', { name: 'Budget Minder', level: 1 })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Budget Finder', level: 1 })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Register', level: 2 })).toBeInTheDocument();
     expect(screen.getByLabelText('Username:')).toBeInTheDocument();
     expect(screen.getByLabelText('Email:')).toBeInTheDocument();

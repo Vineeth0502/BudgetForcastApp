@@ -1,31 +1,38 @@
-//components/ForecastForm.test.js
-
 /*
  * File name: ForecastForm.test.js
- * Description: Test suite that contain Unit tests for the ForecastForm component. Tests include rendering the form, 
+ * Description: Test suite that contains unit tests for the ForecastForm component. Tests include rendering the form, 
  *              submitting the form, showing forecast results, and handling logout and navigation.
-
  */
 
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import ForecastForm from '../ForecastForm';
+import { Store } from 'react-notifications-component'; // Import the notification system
 
 // Mock functions for onForecast and saveForecast
 const mockOnForecast = jest.fn();
 const mockSaveForecast = jest.fn();
 const mockNavigate = jest.fn();
 
+// Mock react-router-dom's useNavigate hook
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
     useNavigate: () => mockNavigate,
+}));
+
+// Mock the Notification Store
+jest.mock('react-notifications-component', () => ({
+    Store: {
+        addNotification: jest.fn(),
+    },
 }));
 
 beforeEach(() => {
     // Mock localStorage methods
     Storage.prototype.getItem = jest.fn(() => 'fake-token');
     Storage.prototype.removeItem = jest.fn();
+    jest.clearAllMocks();
 });
 
 test('renders forecast form', () => {
@@ -43,6 +50,7 @@ test('renders forecast form', () => {
     expect(screen.getByLabelText('Allocation Percentage:')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Forecast' })).toBeInTheDocument();
 });
+
 test('submits form and shows forecast result', async () => {
     mockOnForecast.mockResolvedValue({ months: 12 });
 
@@ -69,6 +77,16 @@ test('submits form and shows forecast result', async () => {
         monthlyIncome: '2000',
         allocationPercentage: '25'
     });
+
+    expect(Store.addNotification).toHaveBeenCalledWith(
+        expect.objectContaining({
+            title: 'Success',
+            message: 'Your forecast is ready! You will achieve your goal in 12 months.',
+            type: 'success',
+            insert: 'top',
+            container: 'top-right',
+        })
+    );
     expect(mockSaveForecast).not.toHaveBeenCalled();
 });
 
@@ -79,7 +97,7 @@ test('handles logout and navigation', () => {
         </BrowserRouter>
     );
 
-    const logoutButton = screen.getByRole('button', { name: 'Logout' }); // Updated
+    const logoutButton = screen.getByRole('button', { name: 'Logout' });
     fireEvent.click(logoutButton);
 
     expect(localStorage.removeItem).toHaveBeenCalledWith('token');

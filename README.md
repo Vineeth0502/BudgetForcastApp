@@ -43,7 +43,7 @@ Budget Minder is a web-based application designed to help users manage and forec
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/mrpateljeet/Group_3_Engineers.git
+    git clone https://github.com/username/BudgetForcast.git
     cd budget-minder
     ```
 

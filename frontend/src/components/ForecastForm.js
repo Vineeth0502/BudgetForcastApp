@@ -11,6 +11,7 @@ import './ForecastForm.css';
 import { IconButton } from '@mui/material';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Store } from 'react-notifications-component'; 
 
 const ForecastForm = ({ onForecast, saveForecast }) => {
     // State variables for form inputs and forecast result
@@ -51,8 +52,35 @@ const ForecastForm = ({ onForecast, saveForecast }) => {
         const result = await onForecast(forecastData);
         setForecastResult(result);
 
+        // Show notification after the forecast is calculated
+        Store.addNotification({
+            title: "Success",
+            message: `Your forecast is ready! You will achieve your goal in ${result.months} months.`,
+            type: "success",
+            insert: "top",
+            container: "top-right",
+            dismiss: {
+                duration: 6000,
+                onScreen: true
+            }
+        });
+
         if (window.confirm("Do you want to record this forecast and get updates regarding it?")) {
             await saveForecast({ name, ...forecastData, months: result.months });
+            
+            // Show notification for saving forecast
+            Store.addNotification({
+                title: "Goal Saved",
+                message: "Your forecast has been saved successfully!",
+                type: "success",
+                insert: "top",
+                container: "top-right",
+                dismiss: {
+                    duration: 6000,
+                    onScreen: true
+                }
+            });
+
             setTimeout(() => {
                 navigate('/add-goal');
             }, 3000);
